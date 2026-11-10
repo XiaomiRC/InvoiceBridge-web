@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!--
+      Privacy guarantee enforced by the browser: the page may only load code from this site and the
+      pinned stlite/Pyodide CDN. Any other request (e.g. sending invoice data anywhere) is blocked.
+      Uploaded files are read inside the tab and never transmitted.
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' https://cdn.jsdelivr.net blob:; worker-src 'self' blob: data: https://cdn.jsdelivr.net; connect-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; font-src 'self' data: https://cdn.jsdelivr.net; img-src 'self' data: blob:; media-src 'self' blob:; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'self'"
+    />
+    <meta name="referrer" content="no-referrer" />
+    <title>InvoiceBridge</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@stlite/browser@1.12.0/build/stlite.css" />
+    <style>
+      body { margin: 0; background: #ffffff; }
+      #boot-note { font: 14px/1.5 system-ui, sans-serif; color: #444; padding: 16px; }
+    </style>
+  </head>
+  <body>
+    <noscript>InvoiceBridge needs JavaScript. It runs entirely in your browser and never uploads your files.</noscript>
+    <div id="boot-note">Loading InvoiceBridge. The first visit downloads the Python runtime (about 40 MB), which can take a minute. Your files are processed only in this browser tab.</div>
+    <div id="root"></div>
+    <script type="module">
+      import { mount } from "https://cdn.jsdelivr.net/npm/@stlite/browser@1.12.0/build/stlite.js";
+      const base = new URL(".", window.location.href);
+      const files = {
+  "app.py": "app/app.py",
+  "invoice_reconciliation/__init__.py": "app/invoice_reconciliation/__init__.py",
+  "invoice_reconciliation/config/application_settings.json": "app/invoice_reconciliation/config/application_settings.json",
+  "invoice_reconciliation/config/charge_normalization.json": "app/invoice_reconciliation/config/charge_normalization.json",
+  "invoice_reconciliation/config/excel_column_mapping.json": "app/invoice_reconciliation/config/excel_column_mapping.json",
+  "invoice_reconciliation/config/field_labels.json": "app/invoice_reconciliation/config/field_labels.json",
+  "invoice_reconciliation/config/invoice_templates.json": "app/invoice_reconciliation/config/invoice_templates.json",
+  "invoice_reconciliation/config/matching_rules.json": "app/invoice_reconciliation/config/matching_rules.json",
+  "invoice_reconciliation/extractors/excel_extractor.py": "app/invoice_reconciliation/extractors/excel_extractor.py",
+  "invoice_reconciliation/extractors/text_pdf_extractor.py": "app/invoice_reconciliation/extractors/text_pdf_extractor.py",
+  "invoice_reconciliation/persistence/audit_repository.py": "app/invoice_reconciliation/persistence/audit_repository.py",
+  "invoice_reconciliation/persistence/database.py": "app/invoice_reconciliation/persistence/database.py",
+  "invoice_reconciliation/persistence/mapping_repository.py": "app/invoice_reconciliation/persistence/mapping_repository.py",
+  "invoice_reconciliation/processing/charge_aggregator.py": "app/invoice_reconciliation/processing/charge_aggregator.py",
+  "invoice_reconciliation/processing/matcher.py": "app/invoice_reconciliation/processing/matcher.py",
+  "invoice_reconciliation/processing/models.py": "app/invoice_reconciliation/processing/models.py",
+  "invoice_reconciliation/processing/normalizer.py": "app/invoice_reconciliation/processing/normalizer.py",
+  "invoice_reconciliation/processing/reconciliation_service.py": "app/invoice_reconciliation/processing/reconciliation_service.py",
+  "invoice_reconciliation/processing/subtotal_validator.py": "app/invoice_reconciliation/processing/subtotal_validator.py",
+  "invoice_reconciliation/reports/excel_report_generator.py": "app/invoice_reconciliation/reports/excel_report_generator.py",
+  "invoice_reconciliation/reports/pdf_analysis_report_generator.py": "app/invoice_reconciliation/reports/pdf_analysis_report_generator.py",
+  "invoice_reconciliation/utils/logging_config.py": "app/invoice_reconciliation/utils/logging_config.py",
+  "invoice_reconciliation/utils/zip_utils.py": "app/invoice_reconciliation/utils/zip_utils.py"
+};
+      const requirements = ["wheels/XlsxWriter-3.1.9-py3-none-any.whl", "wheels/charset_normalizer-3.4.7-py3-none-any.whl", "wheels/et_xmlfile-2.0.0-py3-none-any.whl", "wheels/itsdangerous-2.2.0-py3-none-any.whl", "wheels/openpyxl-3.1.5-py2.py3-none-any.whl", "wheels/pypdf-6.9.2-py3-none-any.whl", "wheels/python_multipart-0.0.33-py3-none-any.whl", "wheels/reportlab-5.0.0-py3-none-any.whl", "pandas", "pillow"];
+      const fileEntries = Object.fromEntries(
+        Object.entries(files).map(([path, url]) => [path, { url: new URL(url, base).href }])
+      );
+      document.getElementById("boot-note").remove();
+      mount(
+        {
+          entrypoint: "app.py",
+          files: fileEntries,
+          // Vendored wheels are served from this site; plain names come from Pyodide's package set.
+          requirements: requirements.map((r) => (r.endsWith(".whl") ? new URL(r, base).href : r)),
+          streamlitConfig: {
+            "browser.gatherUsageStats": false,
+            "client.toolbarMode": "viewer",
+          },
+        },
+        document.getElementById("root")
+      );
+    </script>
+  </body>
+</html>

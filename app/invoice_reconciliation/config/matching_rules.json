@@ -1,0 +1,18 @@
+{
+  "scores": {
+    "same_account_number": 40,
+    "same_billing_period": 25,
+    "same_site_identifier": 15,
+    "same_customer": 10,
+    "exact_total_match": 20,
+    "grouped_total_match": 20,
+    "same_filename_business_code": 10,
+    "different_account_number": -50,
+    "different_billing_period": -30,
+    "pdf_already_assigned": -100
+  },
+  "confidence": {
+    "high": 80,
+    "medium": 60
+  }
+}

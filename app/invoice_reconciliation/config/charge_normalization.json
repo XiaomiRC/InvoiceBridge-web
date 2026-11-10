@@ -1,0 +1,7 @@
+{
+  "rules": [
+    {"pattern": "Managed-Service", "replacement": "Managed Service"},
+    {"pattern": "Monthly Rental", "replacement": "Monthly Rental"},
+    {"pattern": "Telephony Rental", "replacement": "Telephony Rental"}
+  ]
+}

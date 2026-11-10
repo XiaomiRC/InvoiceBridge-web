@@ -1,0 +1,6 @@
+{
+  "amount_tolerance": "0.01",
+  "date_tolerance_days": 0,
+  "max_grouped_pdfs": 4,
+  "automatic_match_score_threshold": 80
+}

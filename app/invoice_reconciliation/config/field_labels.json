@@ -1,0 +1,10 @@
+{
+  "billing_account_number": ["Account Number", "Billing Account Number", "Billing Account", "Billing Reference", "BAN"],
+  "invoice_reference": ["Invoice Reference", "Invoice Number", "Invoice No."],
+  "regular_charges": ["Regular Charges", "Recurring Charges", "Rental Charges", "Monthly Charges"],
+  "one_off_charges": ["One-off Charges", "One Off Charges", "Non-recurring Charges", "Charges and Credits", "One-off charges and credits"],
+  "usage_charges": ["Usage Charges", "Call Charges", "Usage"],
+  "vat": ["Total VAT", "VAT at 20%", "VAT"],
+  "total_excluding_vat": ["Total excluding VAT", "Net Total", "Subtotal before VAT"],
+  "total_including_vat": ["Total for this bill", "Amount Due", "Total including VAT"]
+}

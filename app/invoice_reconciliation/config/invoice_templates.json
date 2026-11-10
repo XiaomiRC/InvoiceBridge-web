@@ -1,0 +1,18 @@
+{
+  "templates": [
+    {
+      "template_name": "BT business bill",
+      "detection_keywords": ["British Telecommunications Plc", "Your business bill", "Total excluding VAT"],
+      "expected_page_count": 4,
+      "account_number_pattern": "Account Number\\s+([A-Z0-9_-]+)",
+      "invoice_reference_pattern": "Invoice Reference\\s+([A-Z0-9]+)",
+      "billing_date_pattern": "Invoice Date\\s+([0-9]{1,2}\\s+[A-Za-z]{3}\\s+\\d{4})",
+      "regular_charge_anchors": ["Regular charges", "Rental Charges"],
+      "one_off_charge_anchors": ["One-off charges and credits", "One Off Charges"],
+      "usage_charge_anchors": ["Usage charges"],
+      "vat_pattern": "Total VAT\\s+£?\\s*([\\d,.]+)",
+      "total_excluding_vat_pattern": "Total excluding VAT\\s+£?\\s*([\\d,.]+)",
+      "total_including_vat_pattern": "Total for this bill\\s+£?\\s*([\\d,.]+)"
+    }
+  ]
+}

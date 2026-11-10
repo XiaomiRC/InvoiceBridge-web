@@ -1,0 +1,17 @@
+{
+  "summary_worksheet": "Summary",
+  "data_worksheet": "Data",
+  "billing_account": ["BillingAccount", "Billing Account", "Billing Account Reference"],
+  "billing_reference": ["Billing Reference", "Bill Reference"],
+  "customer": ["Legal Company Name", "Customer"],
+  "site": ["Site Code", "Billing Site Name", "A End Site Name", "SiteCategory"],
+  "location": ["A End Address", "Location"],
+  "town": ["A End Town", "Town"],
+  "rentals": ["Rentals"],
+  "prior_period": ["PriorPeriod", "Prior Period"],
+  "one_time": ["One-Time", "One Time Charge"],
+  "connection": ["Connection", "Connection Charge"],
+  "cessation": ["Cessation", "Cessation Charge"],
+  "usage": ["Usage", "Usage Charges"],
+  "total": ["Total"]
+}
